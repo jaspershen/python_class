@@ -1,0 +1,779 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0054)http://www.openbookproject.net/py4fun/karel/karel.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="generator" content="Docutils 0.12: http://docutils.sourceforge.net/">
+<title>Karel the Robot</title>
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id: html4css1.css 7056 2011-06-17 10:50:48Z milde $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+object[type="image/svg+xml"], object[type="application/x-shockwave-flash"] {
+  overflow: hidden;
+}
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left, .figure.align-left, object.align-left {
+  clear: left ;
+  float: left ;
+  margin-right: 1em }
+
+img.align-right, .figure.align-right, object.align-right {
+  clear: right ;
+  float: right ;
+  margin-left: 1em }
+
+img.align-center, .figure.align-center, object.align-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.align-left {
+  text-align: left }
+
+.align-center {
+  clear: both ;
+  text-align: center }
+
+.align-right {
+  text-align: right }
+
+/* reset inner alignment in figures */
+div.align-right {
+  text-align: inherit }
+
+/* div.align-center * { */
+/*   text-align: left } */
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font: inherit }
+
+pre.literal-block, pre.doctest-block, pre.math {
+  background-color: #ccffcc ;
+  margin-left: 2em ;
+  margin-right: 2em }
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) ### was 80% */
+  font-size: 50% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+</head>
+<body>
+<div class="document" id="karel-the-robot">
+<h1 class="title">Karel the Robot</h1>
+
+<p>The purpose of the Karel language and runtime environment was educational. Like Logo (Turtle Graphics) the program was developed to give people unfamiliar with computer programming a starting environment with a gentle learning curve.</p>
+<p>Richard Pattis at Stanford developed the language and used it as a first step in teaching an introductory programming course in the Pascal language. Much of the original rules and syntax mimic Pascal. This was intentional. Students got used to being careful with syntax, finding bugs and developing small programs in a simpler environment before diving into the complexities of Pascal itself.</p>
+<p>Karel is known as much for the language features it lacks as for those it has. There are no data structures, no variables, no values or assignment of values, no numbers or strings. What it does have are very simple commands to move Karel around his environment. This environment consists of pathways and wall sections with Karel somewhere on a pathway. Karel can't see but can feel his way around. He can tell if there is a wall section in front of him, to his left or to his right. He also has a compass and can tell if he is facing North, East, South or West. Initially, until you, the programmer, have taught him more, he can do only a very few commands such as <em>move</em> a step forward, <em>turnleft</em>, and <em>turnoff</em>.</p>
+<p>There are also "Beepers" in the environment and Karel has a bag to store any number of them. If the bag is not empty Karel can leave a beeper at his current location or put a beeper into his bag if there are any at his location. He can tell if his bag is empty or not and also whether there are any beepers at his current location. We'll see how in a moment. But he can't know how many because, of course, he has no concept of numbers.</p>
+<p>So two more primitive instructions, <em>pickbeeper</em> (from location to bag) and <em>putbeeper</em> are available.</p>
+<p>As we'll see later, these simple instructions are augmented with just a few control instructions such as IF/ELSE and WHILE as well as a means to create subprograms.</p>
+<p>This implementation just uses the terminal window in Linux. With each change in the
+environment the screen is cleared and redrawn. This is done with a system call that runs the program <em>clear</em>. For windows find the <em>os.system</em> call and change the program name to <em>cls</em>. For windows you will also need to be able to run Python from the Command window.</p>
+<p>Let's look at an example environment as defined in Python:</p>
+<pre class="literal-block">initBoard = """
+ |-----------------------|
+ | .........1........... |
+ | ....xxxxx.xxxxxxx.... |
+ | ....x...........x.... |
+ | ....x...........x.... |
+ | ....x......^....x.... |
+ | ....x...........x.... |
+ | ....xxxxxxxxxxxxx.... |
+ | ..................... |
+ |-----------------------|
+"""
+</pre>
+<p>It's just a multiline string. Karel is the "^" more or less in the center. Periods are locations that Karel can move to. A number (like the "1") is a hidden period that Karel can visit and indeed detect that one or more beepers is there for the picking. Everything else is "wall material" that Karel can feel but must not try to move into.</p>
+<p>The example is a box with an opening on the North (top) side. Karel will exit the box by first finding the West wall, follow it north to the North , follow that until he senses the opening and finally exit. Here is an animation, without the beeper <em>1</em>.</p>
+<p><a class="reference external" href="http://www.openbookproject.net/py4fun/karel/images/karel.gif">Animation. Return with the browser's Back button)</a></p>
+<p>The following Karel program accomplishes this in a very basic manner. It will be explained, modified and improved in a later section:</p>
+<pre class="literal-block"># Find your way out of the box. Door on north side
+#
+BEGIN
+  WHILE not-facing-west DO turnleft
+
+  WHILE front-is-clear DO move
+  turnleft turnleft turnleft
+
+  WHILE front-is-clear DO move
+  turnleft turnleft turnleft
+
+  WHILE left-is-blocked DO move
+
+  turnleft move move
+  turnoff
+END
+</pre>
+<div class="section" id="karel-s-environment">
+<h1>Karel's Environment</h1>
+<p>The world of Karel consists mostly of what we have seen above. It is contained in an instance of the class Env. The following is code from <a class="reference external" href="http://www.openbookproject.net/py4fun/karel/env.py">env.py</a>:</p>
+<pre class="literal-block">05 class Environment :
+06     def __init__(self, text, fatal, interval=.3) :
+07         self.board = text.rstrip().split("\n")
+08         self.board = filter(lambda x: len(x)&gt;0, self.board)
+09         self.karelPos = self.karelDir = None
+10         self.karelBeepers = 0           # beepers in Karel's bag
+11         self.beepers = {}               # squares with beepers
+12         self.fatal   = fatal            # the exit function
+13         self.interval   = interval      # the time between moves
+14         self.nrows = len(self.board)    # rows on the board
+15         self.ncols = len(self.board[0]) # row 0 must be longest
+16         self.incr  = ((-1,0),(0,1),(1,0),(0,-1)) # for each dirc
+17         self.conditions = conditions    # boolean tests
+18         for row in range(self.nrows) :
+19             self.board[row] = list(self.board[row]) # nested lists
+20             for col in range(self.ncols) :
+21                 pos = (row,col)
+22                 c = self.board[row][col]
+23                 kdir = "^&gt;v&lt;".find(c)    # set Karel's direction by symbol
+24                 if kdir &gt;= 0 :
+25                     self.karelPos = (row,col)
+26                     self.karelDir = kdir
+27                 elif " 123456789".find(c) &gt; 0 :
+28                     self.beepers[pos] = int(c) # set # of beepers for pos
+29
+</pre>
+<p>The board is set up (line 7), ignoring blank lines (8). Some attributes are set (9-16) and then board is split into a 2 dimensional list of of single characters. Karel is found (23) and his direction set by the symbol used. His direction is 0-3 for North, East, South and West. North points up like a map. As Karel turns the direction is adjusted with modulo addition, keeping it in the same 0-3 range. Symbols <em>1-9</em> are also used to set the number of beepers for each square that contains some.</p>
+<p>Methods for manipulating the environment follow:</p>
+<pre class="literal-block">30     def getSquare(self, dirc) : # dirc relative to kdir
+31         incr  = ((-1,0),(0,1),(1,0),(0,-1)) # for each dirc
+32         kpos  = self.karelPos
+33         kdir  = self.karelDir
+34         ndir  = (kdir+dirc)%4
+35         return self.addPos(kpos,self.incr[ndir])
+36
+37     def isBlocked(self,sqr) :
+38         occu = self.boardGet(sqr)
+39         return not (occu == '.' or self.beepers.get(sqr))
+40
+41     def nbrBlocked(self, dirc) :
+42         sqr = self.getSquare(dirc)
+43         return self.isBlocked(sqr)
+44
+</pre>
+<p>Determining if neighboring squares to Karel are blocked or not (38-43) uses the method getSquare which passes a direction for ahead, right or left. Karel can't look backwards. Positions such as <em>kpos</em> are tuples with (row,column) and the method <em>addpos</em> adds positions. Notice the modular addition in line 34 and the relative position of the neighboring squares in line 31.</p>
+<p>The ability to move Karel is fundamental. It's actually the most detailed item:</p>
+<pre class="literal-block">45     def move(self) :
+46         kdir = self.karelDir
+47         kpos = self.karelPos
+48         dest = self.getSquare(0)  # one square ahead
+49         beeps= self.beepers.get(kpos)
+50         sym  = self.boardGet(kpos)
+51         if not self.isBlocked(dest) :
+52             self.boardPut(dest,sym)         # Place Karel here
+53             self.karelPos = dest
+54             if beeps : old = str(beeps)[0]  # just room for 1 digit
+55             else     : old = "."
+56             self.boardPut(kpos,old)         # replace prev content
+57         else : self.fatal("move is blocked")
+58         self.printBoard()
+59
+</pre>
+<p>Karel needs to move one square <em>ahead</em> (line 48). The square must be unblocked (51). We put Karel's symbol at the new square (52) and restore the square we just left. If there were beepers there, put the appropriate digit back (54), otherwise just the empty symbol "." and finally, print the board.</p>
+<p>Handling beepers is pretty straight-forward:</p>
+<pre class="literal-block">60     def pickbeeper(self) :
+61         kpos = self.karelPos
+62         if not self.beepers.get(kpos) : self.fatal("No beeper to pick up")
+63         else :
+64             self.beepers[kpos] -= 1
+65             self.karelBeepers  += 1
+66         self.printBoard()
+67
+68     def putbeeper(self) :
+69         kpos = self.karelPos
+70         if not self.karelBeepers : self.fatal("No beeper to put down")
+71         else :
+72             self.beepers[kpos] = self.beepers.get(kpos,0) + 1
+73             self.karelBeepers  -= 1
+74         self.printBoard()
+75
+</pre>
+<p>Remember that the dictionary <em>beepers</em> contains the number of beepers for each square having some. We just transfer a beeper from square to Karel's beeper bag (64-65) or the other way around (72-73).</p>
+<p>Finally, the primitive instruction <em>turnleft</em> is fairly simple:</p>
+<pre class="literal-block">76     def turnleft(self) :
+77         self.karelDir = (self.karelDir-1) % 4  # 0-3 to the left
+78         row,col = self.karelPos
+79         self.board[row][col] = "^&gt;v&lt;"[self.karelDir]
+80         self.printBoard()
+81
+</pre>
+<p>Our modulo addition (counter clockwise) sets the new direction and updates Karel's symbol on the board (79).</p>
+<p>Printing the board is done at spaced amount of time after each change. First the terminal windows is erased with the system call <em>clear</em> (or in Windows <em>CLS</em>), the rows of the board reconstituted from lists into strings and printed:</p>
+<pre class="literal-block">94     def printBoard(self) :
+95         time.sleep(self.interval)
+96         os.system('clear')
+97         for row in range(self.nrows) :
+98             print "".join(self.board[row])  # make a string from list
+99
+</pre>
+<p>Finally, there are conditions that we will need to check. The names of the conditions are keys in a dictionary <em>conditions</em> and each key points to a function (lambda expression) that returns <em>True</em> or <em>False</em>. Here are a few examples:</p>
+<pre class="literal-block">100 conditions = {
+101   "facing-north"     : lambda env: env.karelDir == 0,
+102   "not-facing-north" : lambda env: env.karelDir != 0,
+103   "facing-east"      : lambda env: env.karelDir == 1,
+104   "not-facing-east"  : lambda env: env.karelDir != 1,
+105   "facing-south"     : lambda env: env.karelDir == 2,
+106   "not-facing-south" : lambda env: env.karelDir != 2,
+107   "facing-west"      : lambda env: env.karelDir == 3,
+108   "not-facing-west"  : lambda env: env.karelDir != 3,
+109   "front-is-clear"   : lambda env: not env.nbrBlocked(0),
+110   "front-is-blocked" : lambda env:     env.nbrBlocked(0),
+111   "right-is-clear"   : lambda env: not env.nbrBlocked(1),
+112   "right-is-blocked" : lambda env:     env.nbrBlocked(1),
+113   "left-is-clear"    : lambda env: not env.nbrBlocked(3),
+114   "left-is-blocked"  : lambda env:     env.nbrBlocked(3),
+115   "next-to-a-beeper"     : lambda env: env.beepers.get(env.karelPos) &gt; 0,
+116   "not-next-to-a-beeper" : lambda env: env.beepers.get(env.karelPos) &lt; 1,
+117   "any-beepers-in-beeper-bag": lambda env: env.karelBeepers &gt; 0,
+118   "no-beepers-in-beeper-bag" : lambda env: env.karelBeepers &lt; 1,
+119 }
+</pre>
+<p>Playing with the environment from Python interactive:</p>
+<pre class="literal-block">&gt;&gt;&gt; from env import Environment
+&gt;&gt;&gt; from test1 import initBoard
+&gt;&gt;&gt; env = Environment(initBoard, exit, interval=.3)
+&gt;&gt;&gt; brd = env.board
+&gt;&gt;&gt; env.printBoard()
+
+ |-----------------------|
+ | ..................... |
+ | ....xxxxx.xxxxxxx.... |
+ | ....x...........x.... |
+ | ....x...........x.... |
+ | ....x......^....x.... |
+ | ....x...........x.... |
+ | ....xxxxxxxxxxxxx.... |
+ | ..................... |
+ |-----------------------|
+
+&gt;&gt;&gt; env.move()
+
+ |-----------------------|
+ | ..................... |
+ | ....xxxxx.xxxxxxx.... |
+ | ....x...........x.... |
+ | ....x......^....x.... |
+ | ....x...........x.... |
+ | ....x...........x.... |
+ | ....xxxxxxxxxxxxx.... |
+ | ..................... |
+ |-----------------------|
+
+&gt;&gt;&gt; env.test('front-is-clear')
+True
+&gt;&gt;&gt; env.move()
+
+ |-----------------------|
+ | ..................... |
+ | ....xxxxx.xxxxxxx.... |
+ | ....x......^....x.... |
+ | ....x...........x.... |
+ | ....x...........x.... |
+ | ....x...........x.... |
+ | ....xxxxxxxxxxxxx.... |
+ | ..................... |
+ |-----------------------|
+
+&gt;&gt;&gt; env.test('front-is-clear')
+False
+&gt;&gt;&gt;
+&gt;&gt;&gt; env.move()
+move is blocked
+</pre>
+<p>The last move, being illegal, made the program exit. Along with <em>move</em>, <em>turnleft</em>, <em>turnoff</em>, <em>pickbeeper</em> and <em>putbeeper</em> can also be tested.</p>
+</div>
+<div class="section" id="karel-s-language">
+<h1>Karel's Language</h1>
+<p>We saw an example of a Karel program above finding its way out of a box and picking up the beeper at the extrance. It consists of basic instructions plus the WHILE
+instruction. The control instructions are WHILE, IF/ELSE, ITERATE, DEFINE-INSTRUCTION/AS, BEGIN/END and enable us to create more interesting programs. These instructions are in upper-case.</p>
+<p>This dialect of the Karel language has taken a few liberties from the original in 1978. There, program sections delimitated the main logic from subprograms and also instructions seperated with a strict use of semicolons. This mirrored rules in the Pascal language which the students would later be learning. I've taken a more Pythonic approach. The semicolons are optional and Python style comments are also allowed.</p>
+<p>This is the complete set of control instructions</p>
+<blockquote>
+<ul class="simple">
+<li>BEGIN  &lt;inst&gt; &lt;inst&gt; ... END. gathers instructions to be executed sequentially into a single instruction</li>
+<li>DEFINE-NEW-INSTRUCTION &lt;name&gt; AS &lt;inst&gt; lets you create subprograms. The name becomes an alias for the &lt;inst&gt; which is generally a BEGIN/END construct</li>
+<li>WHILE &lt;condition&gt; DO &lt;inst&gt; we've seen already</li>
+<li>ITERATE &lt;number&gt; TIMES &lt;inst&gt; works much like a <em>for i in range(xx)</em></li>
+<li>IF &lt;condition&gt; THEN &lt;inst1&gt; [ELSE &lt;inst2&gt;] works as you expect. The square brackets indicate that the ELSE part is optional</li>
+</ul>
+</blockquote>
+<p>The compilation of a Karel program results in a very simple data structure.</p>
+<blockquote>
+<ul class="simple">
+<li>A simple instruction is a string with the name. "turnleft"</li>
+<li>A BEGIN/END multiple instruction is a list of instructions</li>
+<li>An ITERATE is a list like ["ITERATE", &lt;number&gt;, "TIMES", &lt;inst&gt; ]</li>
+<li>A WHILE is a list like ["WHILE", &lt;condition&gt;, &lt;inst&gt;]</li>
+<li>An IF is like ["IF", &lt;condition&gt;, &lt;inst1&gt;, &lt;inst2&gt;]. If there is no ELSE then &lt;inst2&gt; is the value <em>None</em>.</li>
+</ul>
+</blockquote>
+<p>The module <a class="reference external" href="http://www.openbookproject.net/py4fun/karel/lang.py">lang.py</a> contains the class for compiling and interpreting programs in the Karel language:</p>
+<pre class="literal-block">01 # lang.py
+02
+03 class Lang :
+04     def __init__(self, env, source) :
+05         self.env   = env
+06         self.conditions = env.conditions
+07         self.words = source.split()     # Make prog a list of words
+08         self.lookup= {}                 # for defined words
+</pre>
+<p>On initialization an evironment is passed from the caller. The conditions table with each condition referencing a function is kept locally. The source code for the program already has had its comments and semicolons stripped and is simply split into a list of words. The <em>lookup</em> table for words that will be defined is created:</p>
+<pre class="literal-block">09
+10     def consume(self, what) :
+11         word = self.getword()
+12         if word == what : return True
+13         else : self.exit ("Expecting %s" % what)
+14
+15     def exit(self, mesg) :
+16         import sys
+17         trace = "&lt;%s&gt;" % " ".join(self.ahead)
+18         if mesg : print "Fatal error: %s %s" % (mesg,trace)
+19         sys.exit()
+</pre>
+<p>The function <em>consume</em> tracks "empty" words such as "TIMES", "AS" making sure they appear when expected. Method <em>exit</em> is used for compilation errors to show where in the source the error occured:</p>
+<pre class="literal-block">20
+21     def execInstruction(self, inst) :
+22         if not inst : return
+23         if   inst == "move"       : self.env.move()
+24         elif inst == "turnleft"   : self.env.turnleft()
+25         elif inst == "pickbeeper" : self.env.pickbeeper()
+26         elif inst == "putbeeper"  : self.env.putbeeper()
+27         elif inst == "turnoff"    : self.exit(None)
+28         elif inst == ""           : pass
+</pre>
+<p>Method <em>execInstruction</em> is passed a compiled instruction, either a word or a list. If it is a simple instruction the the environment is requested to carry it out:</p>
+<pre class="literal-block">29
+30         elif inst[0] == "IF" :          # IF cond THEN ... [ELSE ...]
+31             if self.conditions[inst[1]](self.env) :
+32                 self.execInstruction(inst[2])
+33             elif inst[3] :
+34                 self.execInstruction(inst[3])  # optional ELSE
+</pre>
+<p>An <em>IF</em> tests the condition in the environment. If it returns True the instruction after the IF is executed, otherwise if there is an ELSE clause then that is executed:</p>
+<pre class="literal-block">35
+36         elif inst[0] == "ITERATE" :     # ITERATE times ...
+37             for i in range(inst[1]) :
+38                 self.execInstruction(inst[2])
+39
+40         elif inst[0] == "WHILE" :       # WHILE cond DO ...
+41             while self.conditions[inst[1]](self.env) :
+42                 self.execInstruction(inst[2])
+43
+44         elif type(inst) == type([]) :   # BEGIN ... END
+45             for subInst in inst : self.execInstruction(subInst)
+46
+47         else : self.exit("Illegal instruction: %s" % inst)
+</pre>
+<p>With the above in mind, lines 35-47 should be easy to grasp. Note that an illegal instruction (line 47) will use the local <em>exit</em> method.</p>
+<p>Next is the compilation phase:</p>
+<pre class="literal-block">49     def getword(self) :
+50         if not self.words : return "EOF"
+51         self.ahead = self.words[:6]     # for error messages
+52         word = self.words.pop(0)
+53         return word
+</pre>
+<p>Method <em>getword</em> accesses the next word in the program. It also sets <em>ahead</em> in case there is an error to let the programmer know where in the program the error occurred:</p>
+<pre class="literal-block">55     def getInstruction(self) :
+56         word = self.getword()
+57         if word == "EOF"   : return "EOF"
+58         if word == "BEGIN" :
+59             insts = []
+60             while self.nextword() != "END" :
+61                 inst = self.getInstruction()
+62                 if inst : insts.append(inst)
+63             self.consume("END")
+64             return insts
+</pre>
+<p>Method <em>getInstruction</em> compiles an instruction into a list or simple string. At line 58 the BEGIN/END instruction is handled. Notice the recursive call at line 61 to handle nested structures. Method <em>nextword</em> allows one word lookahead in the source:</p>
+<pre class="literal-block">65
+66         elif word == "DEFINE-NEW-INSTRUCTION" :
+67             name = self.getword()
+68             self.consume("AS")
+69             inst = self.getInstruction()
+70             self.lookup[name] = inst
+71             return None
+</pre>
+<p><em>DEFINE-NEW-INSTRUCTION</em> creates subprograms, attaching an instruction to a name in the lookup table (line 70):</p>
+<pre class="literal-block">72
+73         elif word == "ITERATE" :
+74             times = int(self.getword())
+75             self.consume("TIMES")
+76             inst = self.getInstruction()
+77             return ["ITERATE",times,inst]
+78
+79         elif word == "WHILE" :
+80             cond  = self.getword()
+81             self.consume("DO")
+82             inst = self.getInstruction()
+83             return ["WHILE",cond,inst]
+84
+85         elif word == "IF" :
+86             cond  = self.getword()
+87             self.consume("THEN")
+88             inst1 = self.getInstruction()
+89             if self.nextword() != 'ELSE' :
+90                 return ["IF", cond, inst1, None]
+91             self.consume("ELSE")
+92             inst2 = self.getInstruction()
+93             return ["IF", cond, inst1, inst2]
+94         else :
+95             return self.lookup.get(word,word)  # change if it was redefined
+</pre>
+<p>The last 4 clauses above should at this point be self-explanatory:</p>
+<pre class="literal-block">97     def nextword(self) :
+98         if self.words : return self.words[0]
+99         else          : return None
+</pre>
+<p>The last method <em>nextword</em> lets us peek at the word coming up without consuming it.</p>
+</div>
+<div class="section" id="in-the-drivers-seat">
+<h1>In the Drivers Seat</h1>
+<p>The main program <a class="reference external" href="http://www.openbookproject.net/py4fun/karel/karel.py">karel.py</a> is quite straight-forward:</p>
+<pre class="literal-block">01 #!/usr/local/bin/python
+02 #
+03 #  karel.py
+04 #
+05 import re, sys
+06 from   lang import Lang
+07 from   env  import Environment
+08
+09 def readProgram(karelProgram) :
+10     prog = open(karelProgram).read()
+11     prog = re.sub("#.*"," ",prog)      # strip comments
+12     return re.sub(";"," ",prog)        # semicolons are optional
+13
+14 def main() :
+15     game = sys.argv[1]
+16     exec("from %s import initBoard" % game)
+17     program = readProgram(sys.argv[2])
+18
+19     env = Environment(initBoard,exit)
+20     env.printBoard()
+21     prog = Lang(env, program)
+22     while True :
+23         inst = prog.getInstruction()
+24         if inst == "EOF" : break
+25         if not inst : continue
+26         prog.execInstruction(inst)
+27
+28 if __name__ == "__main__" : main()
+</pre>
+<p>The program is invoked with:</p>
+<pre class="literal-block">$ python karel.py box box1.krl
+</pre>
+<p>The initBoard string is imported from box.py (line 16). The program <a class="reference external" href="http://www.openbookproject.net/py4fun/karel/box1.krl">box1.krl</a> is read (9) and is stripped of comments (11) and semicolons (12). An environment is built (19) and the board printed. The karel program is read and passed to the language processor (21). Instructions are compiled one after the other and then executed (26)</p>
+<p>The program <a class="reference external" href="http://www.openbookproject.net/py4fun/karel/box2.krl">box2.krl</a> makes better use of the control instructions:</p>
+<pre class="literal-block"># Find your way out of the box. Door on north side
+#
+DEFINE-NEW-INSTRUCTION turnright AS
+  BEGIN
+    turnleft turnleft turnleft
+  END
+
+DEFINE-NEW-INSTRUCTION walk-to-wall AS
+  WHILE front-is-clear DO move
+
+DEFINE-NEW-INSTRUCTION walk-to-door AS
+  WHILE left-is-blocked DO move
+
+BEGIN
+  WHILE not-facing-west DO turnleft
+  walk-to-wall
+
+  turnright
+  walk-to-wall
+
+  turnright
+  walk-to-door
+
+  turnleft
+  WHILE not-next-to-a-beeper DO move
+  pickbeeper turnleft move
+  turnoff
+END
+</pre>
+</div>
+<div class="section" id="odds-and-ends">
+<h1>Odds and Ends</h1>
+<p>You can download the <a class="reference external" href="http://www.openbookproject.net/py4fun/karel/karel.zip">zip file for Karel here</a>. It includes 2 more programs <em>climb</em> and <em>stack</em> each with a <em>.krl</em> and <em>.py</em> file. They also use the IF/THEN and ITERATE instructions. They are run with:</p>
+<pre class="literal-block">$ python karel.py climb climb.krl
+$ python karel.py stack stack.krl
+</pre>
+<p>There is also a little REPL (Read-Eval-Print-Loop) <a class="reference external" href="http://www.openbookproject.net/py4fun/karel/repl.py">repl.py</a> that you can use much like the interactive Python prompt. We won't go into detail but I used for debugging the code. It runs like this:</p>
+<pre class="literal-block">$ python repl.py box
+Karel&gt;
+</pre>
+<p>which imports the environment from box.py and then issues a prompt. You can type in commands using shortcuts that you'll find from the source or load a file to run with the <em>@</em> character:</p>
+<pre class="literal-block">$ rlwrap python repl.py box
+  --- box drawn here ---
+  Karel&gt; mv mv tl # move twice then turn left
+  Karel&gt; @box2.krl
+  Karel&gt;
+</pre>
+<p>An empty line starts compilation and execution. And end-of-file (Cntl-D) exits.</p>
+<p>On Linux I like to run <em>repl.py</em> inside the program <em>rlwrap</em> which provides the edit and retrieval functions that we're used to. That looks like</p>
+<blockquote>
+$ rlwrap python repl.py box</blockquote>
+<p>If you have comments or suggestions You can email me at <a class="reference external" href="http://www.openbookproject.net/py4fun/mailme.html">mail me</a></p>
+<p><a class="reference external" href="http://www.gnu.org/copyleft/copyleft.html">Copyright</a> © 2018 Chris Meyers</p>
+</div>
+</div>
+
+
+</body></html>
