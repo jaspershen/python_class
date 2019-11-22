@@ -692,4 +692,165 @@ while True:
         break
 
 
+i = 0
+while True:
+    if i < 5:
+        print(i)
+        i += 1
+    else:
+        print("Finished")
+        break
+
+i = 0
+
+while i < 10:
+    i += 1
+    print(i)
+
 print('Finished!')
+
+
+
+for item in range(0, 5):
+    print(item)
+
+
+# Iterate over multiple data structures at the same time
+
+list1 = [1, 2, 3, 4]
+list2 = [10, 11, 12, 13]
+string3 = 'abcd'
+
+for item1, item2, item3 in zip(list1, list2, string3):
+    print(item1, item2, item3)
+
+# Iterate over a data strucutre with a built-in counter
+
+myString = 'stuvwxyz'
+enumerate(myString)
+for i, item in enumerate(myString):
+    print(i, item)
+
+# enumerate does exactly the same thing as this!
+# i = 0
+# for item in myString:
+#    print(i, item)
+#    i += 1
+
+
+INPUT_FILENAME = 'example.txt'
+
+with open(INPUT_FILENAME, 'r') as inFile:
+    for line in inFile:
+        line = line.strip().split('\t')
+        line.append('hello')
+        print(';'.join(line))
+
+
+
+INPUT_FILENAME = 'example.txt'
+OUTPUT_FILENAME = 'example_hello.txt'
+
+with open(INPUT_FILENAME, 'r') as inFile, open(OUTPUT_FILENAME, 'w') as outFile:
+    for line in inFile:
+        line = line.strip().split('\t')
+        line.append('hello')
+        outFile.write('\t'.join(line) + '\n')
+
+
+# Option 2
+
+INPUT_FILENAME = 'example.txt'
+OUTPUT_FILENAME = 'example_hello.txt'
+
+with open(INPUT_FILENAME, 'r') as inFile:
+    with open(OUTPUT_FILENAME, 'w') as outFile:
+        for line in inFile:
+            line = line.strip().split('\t')
+            line.append('hello')
+            outFile.write(','.join(line) + '\n')
+
+INPUT_FILENAME = 'example.txt'
+
+lineList = []
+
+
+open(INPUT_FILENAME)
+
+file = open(INPUT_FILENAME)
+file2 = file.read()
+file2
+print(file2)
+
+
+with open(INPUT_FILENAME, 'r') as inFile:
+    for line in inFile:
+        line = line.strip().split('\t')
+        lineList.append(line)
+
+# print(lineList)
+
+for item in lineList:
+    item.append('hello')
+    print('\t'.join(item))
+
+
+
+
+###exercsie 3
+
+input_file = "sequences.tsv"
+output_file = "sequences_GC_content.tsv"
+
+in_file = open(input_file, "r")
+in_file = in_file.read()
+
+type(in_file)
+in_file[0]
+in_file = in_file.split("\n")
+in_file
+type(in_file)
+in_file[0]
+line = in_file[0]
+line.strip("\n")
+line.split("\t")
+line = line.strip("\n").split("\t")
+line
+
+chrom, start, seq = line
+
+chrom
+start
+seq
+
+
+line = line.split("\t")
+g_count = line[2].count("G")
+c_count = line[2].count("C")
+#
+percentage = (g_count + c_count)/len(line[2])
+percentage
+new_line = line.copy()
+                # new_line.append(round(percentage, 2))
+                new_line.append(str(percentage * 100))
+
+with open(input_file, "r") as in_file:
+    with open(output_file, "w") as out_file:
+        for line in in_file:
+            print(line)
+            line = line.strip().split("\t")
+            # line = line.split("\t")
+            # line[2] = line[2].strip("\n")
+            g_count = line[2].count("G")
+            c_count = line[2].count("C")
+            percentage = (g_count + c_count) / len(line[2])
+            if(percentage < 0.6):
+                new_line = line.copy()
+                end = len(new_line[2]) + int(new_line[1])
+
+                new_line.append(str(end))
+                new_line.append(str(round(percentage, 2)))
+                print(new_line)
+                # new_line.append(str(percentage * 100))
+                out_file.write('\t'.join(new_line) + '\n')
+
