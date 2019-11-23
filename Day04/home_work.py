@@ -179,6 +179,19 @@ enzyme_key = list(enzyme_sites.keys())[0]
 
 output_file3 = "part3_file.txt"
 
+data2 = data.copy()
+
+del data2["Rosalind_6820"]
+del data2["Rosalind_3684"]
+del data2["Rosalind_6908"]
+del data2["Rosalind_1559"]
+del data2["Rosalind_9546"]
+del data2["Rosalind_5746"]
+
+data2
+
+
+
 with open(output_file3, "w") as file3:
     for sequence_key in data:
         sequence = data[sequence_key]
@@ -190,49 +203,71 @@ with open(output_file3, "w") as file3:
             final_site = find_site(sequence, site, offset)
             sequence_final_site[enzyme_key] = final_site
 
+        #remove the enzyme which have no site
+        key = list(sequence_final_site.keys())
+
+        for temp_key in key:
+            if len(sequence_final_site[temp_key]) == 0:
+                del sequence_final_site[temp_key]
+
+        new_sequence_final_site = []
+        if len(sequence_final_site) != 0:
+            for temp_key in sequence_final_site:
+                temp_site = sequence_final_site[temp_key]
+                new_sequence_final_site.extend([[temp_key, x] for x in temp_site])
+
         ##get the index for sequence printing
         complentary_sequence = find_complentary_sequence(sequence)
         sequence1 = list(sequence)
         complentary_sequence1 = list(complentary_sequence)
-        index = list(range(0, len(sequence), 61))
+        index = list(range(0, len(sequence), 60))
+        index = index + [len(sequence)]
+
+        import numpy as np
+        index = np.unique(index)
+
         index1 = index.copy()
         index2 = index.copy()
-
-        index2 = [x - 1 for x in index2]
 
         index1 = index1[:-1]
         index2 = index2[1:]
 
-        ##the last DNA bases inclused?
-        if index2[-1] != len(sequence):
-            index1 = index1 + [index2[-1] + 1]
-            index2 = index2 + [len(sequence)]
-
         index3 = list(zip(index1, index2))
 
+        #--------------------------------------------------------------------------------------------------------------
         ##print and output DNA sequence
         print("Sequence: ", sequence_key, "\n")
         file3.write(' '.join(["Sequence:", sequence_key, "\n", "\n"]))
-
+        #--------------------------------------------------------------------------------------------------------------
         for i in index3:
             idx1 = i[0]
             idx2 = i[1]
-            for j in sequence_final_site:
-                site_index = sequence_final_site[j]
-                if len(site_index) == 0:
-                    pass
+            ###print enzyme information
+            if(len(new_sequence_final_site) != 0):
+                enzyme_for_this_sequence = []
+                for k in new_sequence_final_site:
+                    if(k[1] >= idx1 and k[1] <= idx2):
+                        enzyme_for_this_sequence.append(k)
+
+                temp_enzyme = [x[0] for x in enzyme_for_this_sequence]
+                temp_site = [x[1] for x in enzyme_for_this_sequence]
+                temp_site = [x - idx1 for x in temp_site]
+
+                ##print enzyme information
+                if(len(temp_site) > 0):
+                    for k in range(len(temp_site)):
+                        print(temp_enzyme[k].rjust(14 + temp_site[k], "*"), end = "")
+                    print("")
+                    for k in range(len(temp_site)):
+                        print("|".rjust(12 + temp_site[k], "*"), end = "")
+                    print("")
                 else:
-                    for z in range(len(site_index)):
-                        temp_site_index = site_index[z]
-                        if temp_site_index >= idx1 and temp_site_index <= idx2:
-                            print('|'.rjust(temp_site_index - idx1 + 13))
-                            file3.write(''.join(['|'.rjust(temp_site_index - idx1 + 13), "\n"]))
+                    print("")
 
-            print(str(idx1 + 1).rjust(10), ''.join(sequence1[idx1:idx2]).rjust(60))
-            print(''.join(complentary_sequence1[idx1:idx2]).rjust(71), "\n")
-            file3.write(''.join([str(idx1 + 1).rjust(10), ''.join(sequence1[idx1:idx2]).rjust(60), "\n"]))
-            file3.write(''.join([''.join(complentary_sequence1[idx1:idx2]).rjust(71), "\n", "\n"]))
-
+            print(str(idx1 + 1).rjust(10, "*"), ''.join(sequence1[idx1:idx2]).ljust(60, "*"))
+            print(''.join(complentary_sequence1[idx1:idx2]).rjust(71, "*"), "\n")
+            # file3.write(''.join([str(idx1 + 1).rjust(10, "*"), ''.join(sequence1[idx1:idx2]).rjust(60, "*"), "\n"]))
+            # file3.write(''.join([''.join(complentary_sequence1[idx1:idx2]).rjust(71, "*"), "\n", "\n"]))
 
 
 
