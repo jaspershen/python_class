@@ -190,6 +190,8 @@ del data2["Rosalind_5746"]
 
 data2
 
+sequence_key = "Rosalind_5746"
+
 
 
 with open(output_file3, "w") as file3:
@@ -256,18 +258,37 @@ with open(output_file3, "w") as file3:
                 ##print enzyme information
                 if(len(temp_site) > 0):
                     for k in range(len(temp_site)):
-                        print(temp_enzyme[k].rjust(14 + temp_site[k], "*"), end = "")
+                        if(k == 0):
+                            print(temp_enzyme[k].rjust(14 + temp_site[k], "*"), end="")
+                            file3.write(temp_enzyme[k].rjust(14 + temp_site[k], "*"))
+                        else:
+                            print(temp_enzyme[k].rjust(temp_site[k] - temp_site[k-1], "*"), end="")
+                            file3.write(temp_enzyme[k].rjust(temp_site[k] - temp_site[k-1], "*"))
+
                     print("")
+                    file3.write("\n")
                     for k in range(len(temp_site)):
-                        print("|".rjust(12 + temp_site[k], "*"), end = "")
+                        if k==0:
+                            print("|".rjust(12 + temp_site[k], "*"), end="")
+                            file3.write("|".rjust(12 + temp_site[k], "*"))
+                        else:
+                            print("|".rjust(temp_site[k] - temp_site[k-1]-12, "*"), end="")
+                            file3.write("|".rjust(temp_site[k] - temp_site[k-1]-12, "*"))
                     print("")
                 else:
                     print("")
 
             print(str(idx1 + 1).rjust(10, "*"), ''.join(sequence1[idx1:idx2]).ljust(60, "*"))
-            print(''.join(complentary_sequence1[idx1:idx2]).rjust(71, "*"), "\n")
-            # file3.write(''.join([str(idx1 + 1).rjust(10, "*"), ''.join(sequence1[idx1:idx2]).rjust(60, "*"), "\n"]))
-            # file3.write(''.join([''.join(complentary_sequence1[idx1:idx2]).rjust(71, "*"), "\n", "\n"]))
+            file3.write("\n")
+            file3.write(''.join([str(idx1 + 1).rjust(10, "*"), ''.join(sequence1[idx1:idx2]).ljust(60, "*")]))
+            file3.write("\n")
+            if len(sequence1[idx1:idx2]) != 60:
+                print(''.join(complentary_sequence1[idx1:idx2]).rjust(len(complentary_sequence1[idx1:idx2]) + 11, "*"), "\n")
+                file3.write(''.join([''.join(complentary_sequence1[idx1:idx2]).rjust(len(complentary_sequence1[idx1:idx2]) + 11, "*"), "\n"]))
+            else:
+                print(''.join(complentary_sequence1[idx1:idx2]).rjust(71, "*"), "\n")
+                file3.write(''.join([''.join(complentary_sequence1[idx1:idx2]).rjust(71, "*"), "\n"]))
+                file3.write("\n")
 
 
 
