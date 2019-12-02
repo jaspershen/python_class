@@ -296,3 +296,14 @@ with open(output_file3, "w") as file3:
 
 
 
+
+
+
+
+
+import pandas as pd
+
+
+help(pd.read_csv)
+
+pd.read_csv
