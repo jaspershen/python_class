@@ -1,0 +1,44 @@
+
+Sequence: Rosalind_6820 (Cut sites) 
+HpaI118
+HaeIII596
+
+Sequence: Rosalind_6820 (fragment sizes) 
+HpaI 118, 877 
+HaeIII 596, 399 
+
+Sequence: Rosalind_3684 (Cut sites) 
+HaeIII106, 121, 263, 408, 800, 916
+
+Sequence: Rosalind_3684 (fragment sizes) 
+HaeIII 106, 15, 142, 145, 392, 116, 48 
+
+Sequence: Rosalind_2711 (Cut sites) 
+HindIII133
+HaeIII70, 225, 614, 628
+
+Sequence: Rosalind_2711 (fragment sizes) 
+HindIII 133, 675 
+HaeIII 70, 155, 389, 14, 180 
+
+Sequence: Rosalind_1559 (Cut sites) 
+EcoRI367
+HaeIII91, 429, 458, 614, 622
+
+Sequence: Rosalind_1559 (fragment sizes) 
+EcoRI 367, 524 
+HaeIII 91, 338, 29, 156, 8, 269 
+
+Sequence: Rosalind_5746 (Cut sites) 
+EcoRI143
+HindIII37
+BamHI552
+HpaI826
+HaeIII177, 250, 272, 329, 409, 708
+
+Sequence: Rosalind_5746 (fragment sizes) 
+EcoRI 143, 702 
+HindIII 37, 808 
+BamHI 552, 293 
+HpaI 826, 19 
+HaeIII 177, 73, 22, 57, 80, 299, 137 

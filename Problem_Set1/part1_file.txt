@@ -1,0 +1,22 @@
+
+Sequence: Rosalind_6820 (Cut sites) 
+HpaI 118 
+HaeIII 596 
+
+Sequence: Rosalind_3684 (Cut sites) 
+HaeIII 106, 121, 263, 408, 800, 916 
+
+Sequence: Rosalind_2711 (Cut sites) 
+HindIII 133 
+HaeIII 70, 225, 614, 628 
+
+Sequence: Rosalind_1559 (Cut sites) 
+EcoRI 367 
+HaeIII 91, 429, 458, 614, 622 
+
+Sequence: Rosalind_5746 (Cut sites) 
+EcoRI 143 
+HindIII 37 
+BamHI 552 
+HpaI 826 
+HaeIII 177, 250, 272, 329, 409, 708 
